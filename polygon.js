@@ -44,7 +44,7 @@ function setup() {
   const x = 200;
   const y = 200;
   const radius = 150;
-  const numberOfSides = 7;
+  const numberOfSides = 8;
   const spaceBtwPoints = 360 / numberOfSides;
   const pointRadius = 10;
 
