@@ -39,7 +39,7 @@ function setup() {
   const WIDTH = 400;
   const HEIGHT = 400;
   const FPS = 50;
-  const TITLE = "circle_points";
+  const TITLE = "polygon";
 
   const x = 200;
   const y = 200;

@@ -58,7 +58,7 @@ function setup() {
   const WIDTH = 600;
   const HEIGHT = 400;
   const FPS = 50;
-  const TITLE = "circle_points";
+  const TITLE = "sine and cosine";
 
   const xStart = 50;
   const yStart = 200;

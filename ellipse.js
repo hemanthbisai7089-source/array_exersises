@@ -1,16 +1,17 @@
 const r = require("raylib");
 
-function drawPoints(y, x, point, world) {
+function drawPoints(world, point) {
   const radians = point * world.spaceBtwPoints * (Math.PI / 180);
   const start = {
-    x: x + world.radius * Math.cos(radians),
-    y: y + world.radius * Math.sin(radians),
+    x: world.x + world.hRadius * Math.cos(radians),
+    y: world.y + world.vRadius * Math.sin(radians),
   };
   const nextRadians = (1 + point) * world.spaceBtwPoints * (Math.PI / 180);
   const nextPoint = {
-    x: x + world.radius * Math.cos(nextRadians),
-    y: y + world.radius * Math.sin(nextRadians),
+    x: world.x + world.hRadius * Math.cos(nextRadians),
+    y: world.y + world.vRadius * Math.sin(nextRadians),
   };
+  // console.log(start.x, start.y);
   r.DrawLineEx(start, nextPoint, 3, r.BLUE);
 }
 
@@ -19,8 +20,7 @@ function draw(world) {
   r.ClearBackground(r.BLACK);
 
   for (let point = 0; point < world.numberOfSides; point++) {
-    drawPoints(world.y1, world.x1, point, world);
-    drawPoints(world.y2, world.x2, point, world);
+    drawPoints(world, point);
   }
   r.EndDrawing();
 }
@@ -38,25 +38,24 @@ function loop(world) {
 
 function setup() {
   const WIDTH = 600;
-  const HEIGHT = 600;
+  const HEIGHT = 400;
   const FPS = 50;
-  const TITLE = "circle_points";
+  const TITLE = "ellipes";
 
-  const x1 = 150;
-  const y1 = 200;
-  const x2 = 450;
-  const y2 = 200;
+  const x = 300;
+  const y = 200;
+  const hRadius = 200;
+  const vRadius = 100;
 
-  const radius = 150;
-  const numberOfSides = 8;
+  const numberOfSides = 100;
   const spaceBtwPoints = 360 / numberOfSides;
   const pointRadius = 10;
 
-  r.SetTryaceLogLevel(r.LOG_NONE);
+  r.SetTraceLogLevel(r.LOG_NONE);
   r.InitWindow(WIDTH, HEIGHT, TITLE);
   r.SetTargetFPS(FPS);
 
-  return { radius, x1, y1, x2, y2, numberOfSides, spaceBtwPoints, pointRadius };
+  return { vRadius, hRadius, x, y, numberOfSides, spaceBtwPoints, pointRadius };
 }
 
 function main() {
